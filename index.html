@@ -3,28 +3,44 @@
 <head>
 <meta charset="UTF-8">
 
-<script>
-const paginas = [
-"https://app.powerbi.com/groups/me/reports/ae0d6d5e-14fa-46c4-9ff9-592d26e5de19/4531c885a93916c37d6e?experience=power-bi&chromeless=1",
-"https://app.powerbi.com/groups/me/reports/ae0d6d5e-14fa-46c4-9ff9-592d26e5de19/ca3f12a2786630879680?experience=power-bi&chromeless=1"
-];
-
-let indice = 0;
-
-function trocarPagina() {
-    indice = (indice + 1) % paginas.length;
-    window.location.href = paginas[indice];
+<style>
+body {
+    margin: 0;
+    overflow: hidden;
 }
 
-setInterval(trocarPagina, 120000);
-</script>
+iframe {
+    width: 100vw;
+    height: 100vh;
+    border: none;
+}
+</style>
 
 </head>
 
 <body>
 
+<iframe id="painel"></iframe>
+
 <script>
-window.location.href = paginas[0];
+
+const paginas = [
+"https://app.powerbi.com/groups/me/reports/ae0d6d5e-14fa-46c4-9ff9-592d26e5de19/4531c885a3916c37d6e?experience=power-bi&chromeless=1",
+"https://app.powerbi.com/groups/me/reports/ae0d6d5e-14fa-46c4-9ff9-592d26e5de19/ca3f12a2786630879680?experience=power-bi&chromeless=1"
+];
+
+let indice = 0;
+const frame = document.getElementById("painel");
+
+function trocarPagina() {
+    indice = (indice + 1) % paginas.length;
+    frame.src = paginas[indice];
+}
+
+frame.src = paginas[0];
+
+setInterval(trocarPagina, 120000); // 2 minutos
+
 </script>
 
 </body>
